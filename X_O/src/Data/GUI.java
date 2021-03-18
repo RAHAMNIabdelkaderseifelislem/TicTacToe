@@ -19,7 +19,7 @@ public class GUI extends JFrame{
 	JButton[][] board = new JButton[3][3];
 	JButton exit,reset,round;
 	JPanel[] results = new JPanel[3];
-	JLabel xwins,owins,draws;
+	JLabel xwins,owins,draws,turn;
 	int xwin=0,owin=0,draw=0;
 	int counter = 0;
 	int winnercounter = 0;
@@ -67,6 +67,11 @@ public class GUI extends JFrame{
 		results[2].add(draws);
 		draws.setBounds(0, 0, 150, 80);
 		draws.setFont(hisfont);
+		turn = new JLabel("Player X turn");
+		turn.setForeground(Color.WHITE);
+		content.add(turn);
+		turn.setBounds(450, 450, 150, 80);
+		turn.setFont(hisfont);
 		
 		for(int i=0;i<3;i++) {
 			for(int j=0;j<3;j++) {
@@ -87,6 +92,7 @@ public class GUI extends JFrame{
 		pos[2][0]=20;
 		pos[2][1]=21;
 		pos[2][2]=22;
+		
 		for(int i = 0;i<3;i++) {
 			for(int j=0;j<3;j++) {
 				int k=i;
@@ -109,6 +115,12 @@ public class GUI extends JFrame{
 						board[k][t].setFont(font);
 						board[k][t].setEnabled(false);
 						winner();
+						if(counter%2==0) {
+							turn.setText("Player X turn");
+						}else {
+							turn.setText("Player O turn");
+						}
+					
 					}
 				});
 			}
@@ -157,6 +169,7 @@ public class GUI extends JFrame{
 						
 					}
 				}
+				turn.setText("Player X turn");
 			}
 		});
 		reset = new JButton("RESET");
@@ -172,7 +185,6 @@ public class GUI extends JFrame{
 				new GUI();	
 			}
 		});
-	
 	}
 	
 	public void dark(JButton button) {
