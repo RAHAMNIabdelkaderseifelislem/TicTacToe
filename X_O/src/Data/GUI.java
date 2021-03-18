@@ -130,6 +130,7 @@ public class GUI extends JFrame{
 		});
 		round = new JButton("NEXT ROUND");
 		content.add(round);
+		round.setEnabled(false);
 		round.setBounds(450, 350, 150, 80);
 		dark(round);
 		round.addActionListener(new ActionListener() {
@@ -259,11 +260,13 @@ public class GUI extends JFrame{
 					board[i][j].setEnabled(false);
 				}
 			}
+			round.setEnabled(true);
 		}
 		else if(boardfull()) {
 			JOptionPane.showMessageDialog(null, "Tie game.", "TIE", JOptionPane.INFORMATION_MESSAGE);
 			draw++;
 			draws.setText("Draws : "+draw);
+			round.setEnabled(true);
 		}
 	}
 
